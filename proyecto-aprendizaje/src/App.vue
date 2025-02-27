@@ -1,39 +1,39 @@
 <script setup>
-import { ref, watch } from "vue";  // Importamos ref() para reactividad
-import Saludo from "./components/Saludo.vue"; // Importamos el hijo
-
-const nombreUsuario = ref(""); // Variable reactiva
-const apellidoUsuario = ref("Solis");
-// Vigilar cambios en el apellido y restaurar "Gómez" si queda vacío
-watch(apellidoUsuario, (nuevoValor) => {
-  if (nuevoValor === "") {
-    setTimeout(() => {
-      if (apellidoUsuario.value === "") { // Verificamos nuevamente antes de cambiarlo
-        apellidoUsuario.value = "Solis";
-      }
-    }, 1000); // Esperamos 1 segundo antes de restaurarlo
-  }
-});
-
+import Contador from "./components/Contador.vue";
 </script>
 
 <template>
-  <h1>Mi Aplicación con Vue 3</h1>
-  
-  <!-- Input para capturar el nombre -->
-  <input v-model="nombreUsuario" placeholder="Escribe tu nombre" />
-  <input v-model="apellidoUsuario" placeholder="Escribe tu apellido" />
-
-  <!-- Enviar nombreUsuario como prop al hijo -->
-  <Saludo :nombre="nombreUsuario" :apellido="apellidoUsuario" />
-
+  <div class="app-container">
+    <header>
+      <h1>🚀 Mi Aplicación con Vue 3</h1>
+    </header>
+    <main>
+      <Contador />
+    </main>
+  </div>
 </template>
 
 <style scoped>
-input {
-  display: block;
-  margin: 10px 0;
-  padding: 5px;
-  font-size: 16px;
+/* Aplicamos la fuente Poppins */
+.app-container {
+  background: linear-gradient(to bottom, #1a1a1a, #111);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Encabezado */
+header {
+  width: 100%;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 </style>
